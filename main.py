@@ -32,9 +32,8 @@ documents = db.collection(collection_name).stream()
 # Fetch collections to filter stocks
 collections = ['stocks', 'stocksMidCap', 'stocksSmallCap']
 
-sender_email = "ujjwalpatel000777@gmail.com"
-receiver_email = "newujjwalpatel@gmail.com"
-password = "hdic suzn eesl qytc"
+sender_email = os.getenv("EMAIL")
+password = os.getenv("PASSWORD")
 subject = "Stock Recommendation "
 email_body = ""
 
@@ -131,7 +130,7 @@ for doc in documents:
     # Send the email
     try:
         yag.send(
-            to=receiver_email,
+            to=email,
             subject="Stock Recommendations Based on Your Criteria",
             contents=email_body
         )
